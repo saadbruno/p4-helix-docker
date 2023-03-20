@@ -1,0 +1,17 @@
+version: '3.5'
+services:
+  perforce_helix:
+    image: saadbruno/p4-helix-docker
+    container_name: perforce_helix
+    build:
+        context: ./
+        dockerfile: Dockerfile
+    volumes:
+        - './data:/perforce/server'
+        - './ssl:/perforce/ssl'
+    ports:
+        - '1666:1666'
+    restart: always
+    logging:
+        options:
+            max-size: 10m
